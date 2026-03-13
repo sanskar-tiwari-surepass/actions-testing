@@ -1,0 +1,4 @@
+metric,owner,target
+deploy_success_rate,platform,99.5
+release_lead_time,ops,24h
+qa_signoff_turnaround,qa,8h
