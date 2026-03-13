@@ -1,0 +1,12 @@
+[
+  {
+    "key": "sandbox_ui_banner",
+    "enabled": true,
+    "owner": "product"
+  },
+  {
+    "key": "master_release_guard",
+    "enabled": false,
+    "owner": "ops"
+  }
+]
