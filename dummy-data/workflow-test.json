@@ -1,0 +1,5 @@
+{
+  "test_case": "master-push-sync",
+  "created_on": "2026-03-13",
+  "expected_result": "sandbox matches master after master push"
+}
