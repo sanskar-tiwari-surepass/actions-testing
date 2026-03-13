@@ -1,0 +1,10 @@
+[
+  {
+    "version": "0.1.0-sandbox",
+    "status": "merged-into-sandbox"
+  },
+  {
+    "version": "0.1.0-master",
+    "status": "promoted-from-sandbox"
+  }
+]
