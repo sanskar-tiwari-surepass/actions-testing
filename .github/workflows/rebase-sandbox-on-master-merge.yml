@@ -1,0 +1,48 @@
+name: Rebase sandbox on master merge
+
+on:
+  pull_request_target:
+    branches:
+      - master
+    types:
+      - closed
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebase-sandbox-on-master-merge
+  cancel-in-progress: false
+
+jobs:
+  rebase-sandbox:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out sandbox
+        uses: actions/checkout@v6
+        with:
+          ref: sandbox
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch latest branches
+        run: git fetch origin master sandbox
+
+      - name: Rebase sandbox onto master
+        run: |
+          set -euo pipefail
+
+          if ! git rebase origin/master; then
+            git rebase --abort || true
+            exit 1
+          fi
+
+      - name: Push rebased sandbox
+        run: git push --force-with-lease origin HEAD:sandbox
